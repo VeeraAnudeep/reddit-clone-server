@@ -9,7 +9,8 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
-db.init_app(app)
+with app.app_context():
+    db.init_app(app)
 
 @app.route("/")
 def main():
