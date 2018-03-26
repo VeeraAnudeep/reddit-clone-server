@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify, abort
 from models import db, Topics
 from flask_heroku import Heroku
