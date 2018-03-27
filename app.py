@@ -4,7 +4,7 @@ from flask_heroku import Heroku
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/reddit'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/reddit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
 db.init_app(app)
