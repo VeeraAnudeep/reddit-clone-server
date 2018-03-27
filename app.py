@@ -48,9 +48,10 @@ def delete_topic():
 	return "success"
 
 
-@app.route("/upvote/<int:topic_id>/", methods=['POST'])
-def upvote(topic_id):
+@app.route("/up-vote/", methods=['POST'])
+def upvote():
 	"""Upvote function increments the upvote count of a topic"""
+	topic_id = request.args.get("id")
 	topic = Topics.query.filter_by(id=topic_id).first()
 	if not topic:
 		return abort(400)
@@ -58,9 +59,10 @@ def upvote(topic_id):
 	db.session.commit()
 	return jsonify(data=topic.json())
 
-@app.route("/downvote/<int:topic_id>/", methods=['POST'])
-def downvote(topic_id):
+@app.route("/down-vote/", methods=['POST'])
+def downvote():
 	"""Downvote function increments the downvote count of a topic"""
+	topic_id = request.args.get("id")
 	topic = Topics.query.filter_by(id=topic_id).first()
 	if not topic:
 		return abort(400)
