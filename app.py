@@ -4,7 +4,7 @@ from flask_heroku import Heroku
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/reddit'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/reddit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 heroku = Heroku(app)
 db.init_app(app)
@@ -57,7 +57,7 @@ def upvote():
 		return abort(400)
 	topic.n_upvotes = topic.n_upvotes + 1
 	db.session.commit()
-	return jsonify(data=topic.json())
+	return jsonify(topic.json())
 
 @app.route("/down-vote/", methods=['POST'])
 def downvote():
@@ -68,7 +68,7 @@ def downvote():
 		return abort(400)
 	topic.n_downvotes = topic.n_downvotes + 1
 	db.session.commit()
-	return jsonify(data=topic.json())
+	return jsonify(topic.json())
 
 
 if __name__ == '__main__':
